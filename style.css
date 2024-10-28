@@ -6,8 +6,10 @@
     --text-color-dim: var(--gray-7);
     --card-bg-color: white;
     --card-bg-color-dim: var(--gray-1);
-    --body-bg: var(--gradient-7);
+    --body-bg: none;
     --border-color: var(--gray-3);
+    --link-icon-color: var(--gray-6);
+    --gh-icon-color-hover: black;
 
 }
 
@@ -17,14 +19,13 @@
         --text-color-dim: var(--gray-3);
         --card-bg-color: var(--gray-10);
         --card-bg-color-dim: var(--gray-8);
-        --body-bg: var(--gradient-23);
+        --body-bg: var(--gradient-8);
         --border-color: var(--gray-8);
+        --link-icon-color: var(--gray-3);
+        --gh-icon-color-hover: white;
     }
 
 }
-
-
-
 
 * {
     box-sizing: content-box;
@@ -50,7 +51,6 @@ main {
     justify-content: flex-start;
     align-items: center;
     margin: 0 var(--size-2);
-    height: 100%;
     width: calc(100% - 2 * var(--size-2));
 }
 
@@ -64,6 +64,7 @@ main {
     background-color: var(--card-bg-color);
     color: var(--text-color);
     padding: var(--size-3);
+    border-top: solid 1px var(--border-color);
 
     & a,
     & a:visited {
@@ -187,7 +188,7 @@ main {
             &>a,
             &>button {
                 border-radius: var(--radius-round);
-                padding: var(--size-2) var(--size-1);
+                padding: var(--size-1) var(--size-1);
                 display: flex;
                 flex: 0 0 calc(50% - 2 * var(--size-1));
                 justify-content: center;
@@ -211,15 +212,14 @@ main {
 
                 & svg {
                     transition: fill 400ms ease-out;
-                    fill: var(--gray-6);
-                    width: 22px;
-                    height: 22px;
+                    fill: var(--link-icon-color);
+                    width: 24px;
+                    height: 24px;
                 }
 
                 &#bsky:hover {
                     & svg {
                         fill: rgb(0, 133, 255);
-                        &
                     }
                 }
 
@@ -231,7 +231,7 @@ main {
 
                 &#gh:hover {
                     & svg {
-                        fill: black;
+                        fill: var(--gh-icon-color-hover);
                     }
                 }
 
@@ -323,18 +323,6 @@ main {
 
     .post {
         margin-top: 0;
-
-        & .links {
-            & .link {
-                & a {
-                    &#gh:hover {
-                        & svg {
-                            fill: white;
-                        }
-                    }
-                }
-            }
-        }
     }
 
     .main-footer {
