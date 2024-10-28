@@ -217,19 +217,20 @@ main {
                 }
 
                 &#bsky:hover {
-                    svg {
+                    & svg {
                         fill: rgb(0, 133, 255);
+                        &
                     }
                 }
 
                 &#mstdn:hover {
-                    svg {
+                    & svg {
                         fill: rgb(99 100 255)
                     }
                 }
 
                 &#gh:hover {
-                    svg {
+                    & svg {
                         fill: black;
                     }
                 }
@@ -322,6 +323,18 @@ main {
 
     .post {
         margin-top: 0;
+
+        & .links {
+            & .link {
+                & a {
+                    &#gh:hover {
+                        & svg {
+                            fill: white;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .main-footer {
@@ -329,5 +342,7 @@ main {
         justify-content: space-between;
         align-items: center;
     }
+
+
 
 }
