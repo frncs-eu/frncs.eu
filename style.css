@@ -1,7 +1,34 @@
 @import "https://unpkg.com/open-props";
 
+
+:root {
+    --text-color: var(--gray-12);
+    --text-color-dim: var(--gray-7);
+    --card-bg-color: white;
+    --card-bg-color-dim: var(--gray-1);
+    --body-bg: var(--gradient-7);
+    --border-color: var(--gray-3);
+
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: var(--gray-2);
+        --text-color-dim: var(--gray-3);
+        --card-bg-color: var(--gray-10);
+        --card-bg-color-dim: var(--gray-8);
+        --body-bg: var(--gradient-23);
+        --border-color: var(--gray-8);
+    }
+
+}
+
+
+
+
 * {
     box-sizing: content-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -9,117 +36,130 @@ html {
 }
 
 body {
-    background-image: var(--gradient-9);
+    display: flex;
+    flex-direction: column;
+    background-image: var(--body-bg);
     height: 100vh;
-    margin: 0 var(--size-2);
+    margin: 0;
 }
 
 main {
+    flex: 1 0 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin: 0 auto;
+    margin: 0 var(--size-2);
     height: 100%;
-    width: 100%;
-
-
+    width: calc(100% - 2 * var(--size-2));
 }
 
-@media (width >=480px) {
-    main {
-        justify-content: center;
+.main-footer {
+    font-size: var(--font-size-0);
+    flex: 0 1 var(--size-6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    padding: var(--size-3);
+
+    & a,
+    & a:visited {
+        color: var(--blue-6);
+
+        &:not(:hover) {
+            text-decoration: none;
+        }
     }
-
-    .post {
-        margin-top: 0;
-    }
-
 }
 
 
-
-a:link,
-a:visited,
-a:hover,
-a:active {
-    text-decoration: none;
-}
 
 .post {
     margin-top: var(--size-8);
-    background-color: white;
+    background-color: var(--card-bg-color);
     border-radius: var(--radius-3);
-    border: var(--border-size-1) solid var(--gray-3);
+    border: var(--border-size-1) solid var(--border-color);
     padding: var(--size-3) var(--size-4);
     display: flex;
     flex-direction: column;
     gap: var(--size-2);
     max-width: var(--size-content-2);
 
-    .author {
+    & header {
         display: flex;
         flex-direction: row;
         align-self: flex-start;
         align-items: center;
         justify-content: flex-start;
         gap: var(--size-2);
+        font-weight: var(--font-weight-7);
+        font-size: var(--font-size-2);
+        color: var(--text-color);
 
-        &:link,
-        &:visited,
-        &:hover,
-        &:active {
-            text-decoration: none;
-        }
-
-        .pic {
+        & .pic {
             height: var(--size-8);
             width: var(--size-8);
             border-radius: var(--radius-round);
-            border: 1px solid var(--gray-3);
+            border: 1px solid var(--border-color);
         }
 
-        .text {
+        & .header-text {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+
+            & a {
+                color: var(--text-color);
+            }
+
+            &>h1 {
+                margin: 0;
+                color: black;
+                line-height: var(--font-lineheight-0);
+                font-size: var(--font-size-1);
+                font-weight: var(--font-weight-6);
+
+            }
+
+            &>h1+.at {
+                display: block;
+                font-size: var(--font-size-1);
+                font-weight: var(--font-weight-3);
+                color: var(--text-color-dim);
+                line-height: var(--font-lineheight-0);
+            }
         }
 
-        .dname,
-        .at {
-            display: block;
-            line-height: var(--font-lineheight-1);
-        }
 
-        .dname {
-            font-weight: var(--font-weight-7);
-            font-size: var(--font-size-2);
-            color: var(--gray-12);
-        }
-
-        .at {
-            font-weight: var(--font-weight-4);
-            font-size: var(--font-size-1);
-            color: var(--gray-7);
-        }
     }
 
-    .labels {
+    & .labels {
         display: flex;
+        flex-wrap: wrap;
         gap: var(--size-1);
 
-        .label {
-            background-color: var(--gray-1);
+        & .label {
+            background-color: var(--card-bg-color-dim);
             border-radius: var(--radius-round);
             font-size: var(--font-size-0);
             padding: var(--size-1) var(--size-2);
-            color: var(--gray-7);
+            color: var(--text-color-dim);
             font-weight: var(--font-weight-6);
+
+            .icon {
+                margin-right: var(--size-1);
+                font-size: var(--font-size-0);
+            }
         }
     }
 
-    p {
+    & p {
         font-size: var(--font-size-2);
+        color: var(--text-color);
+        line-height: var(--font-lineheight-2);
         margin: 0;
         white-space: pre-line;
     }
@@ -127,25 +167,25 @@ a:active {
 
 
 
-    hr {
-        background-color: var(--gray-3);
+    & hr {
+        background-color: var(--border-color);
         height: 1px;
         width: 100%;
         border: 0;
     }
 
-    .links {
+    & .links {
         display: flex;
         justify-content: stretch;
 
-        >.link {
+        &>.link {
             flex: 1 0 25%;
             justify-content: flex-start;
             display: flex;
 
 
-            >a,
-            >button {
+            &>a,
+            &>button {
                 border-radius: var(--radius-round);
                 padding: var(--size-2) var(--size-1);
                 display: flex;
@@ -166,14 +206,14 @@ a:active {
                 &:hover,
                 &:active,
                 &:focus {
-                    background-color: var(--gray-1);
+                    background-color: var(--card-bg-color-dim);
                 }
 
-                svg {
+                & svg {
                     transition: fill 400ms ease-out;
                     fill: var(--gray-6);
-                    width: 25px;
-                    height: 25px;
+                    width: 22px;
+                    height: 22px;
                 }
 
                 &#bsky:hover {
@@ -206,11 +246,11 @@ a:active {
         }
     }
 
-    #more-options {
+    & #more-options {
         display: none;
-        background-color: white;
+        background-color: var(--card-bg-color);
         box-shadow: var(--shadow-2);
-        border: 1px solid var(--gray-4);
+        border: 1px solid var(--border-color);
         border-radius: var(--radius-2);
         width: var(--size-12);
 
@@ -222,7 +262,7 @@ a:active {
             transform: translateX(-50%);
         }
 
-        .dropdown-content {
+        & .dropdown-content {
             list-style-type: none;
             margin: 0;
             padding: 0 var(--size-1);
@@ -233,45 +273,61 @@ a:active {
             align-items: stretch;
         }
 
-        .dd-option {
+        & .dd-option {
             display: flex;
             padding: var(--size-1) 0;
 
 
-            a {
+            & a {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                color: var(--gray-7);
+                color: var(--text-color-dim);
                 font-weight: var(--font-weight-6);
                 font-size: var(--font-size-1);
                 width: 100%;
                 padding: var(--size-1) var(--size-4);
 
                 &:hover {
-                    background-color: var(--gray-1);
+                    background-color: var(--card-bg-color-dim);
                     border-radius: var(--radius-2);
                 }
 
-                #sad-emoji,
-                #happy-emoji {
+                & #sad-emoji,
+                & #happy-emoji {
                     font-size: var(--font-size-4);
+                    filter: grayscale(100%);
                 }
             }
 
             &:not(:last-child) {
-                border-bottom: 1px solid var(--gray-3);
+                border-bottom: 1px solid var(--border-color);
             }
 
         }
     }
 
+    & a:link,
+    & a:visited,
+    & a:hover,
+    & a:active {
+        text-decoration: none;
+    }
 }
 
-@media (--sm-n-above) {
-    main {}
+@media (width >=480px) {
+    main {
+        justify-content: center;
+    }
 
     .post {
-        margin-top: 0
+        margin-top: 0;
     }
+
+    .main-footer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
 }
